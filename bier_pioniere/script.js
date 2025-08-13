@@ -4,8 +4,6 @@ const backCard = { image: "img/back.jpg", caption: "Bier Pioniere" }
 // Aufbaukarten
 const setupCards = [
 	{ image: "img/setup_1.jpg", caption: "Aufbau" },
-	{ image: "img/setup_2.jpg", caption: "Aufbau" },
-	{ image: "img/setup_3.jpg", caption: "Aufbau" },
 	{ image: "img/setup_4.jpg", caption: "Aufbau" },
 	{ image: "img/setup_5.jpg", caption: "Aufbau" }
 ];
@@ -193,4 +191,5 @@ function preloadImages(deck) {
 
 
 startGame();
+
 
