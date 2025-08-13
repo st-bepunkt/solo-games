@@ -116,14 +116,14 @@ function displayCurrentCard() {
 
 // Funktion zum Speichern des aktuellen Standes in localStorage
 function saveGameState() {
-	localStorage.setItem("currentCardIndex", currentCardIndex);
-	localStorage.setItem("fullDeck", JSON.stringify(fullDeck));
+	localStorage.setItem("bp.currentCardIndex", currentCardIndex);
+	localStorage.setItem("bp.fullDeck", JSON.stringify(fullDeck));
 }
 
 // Funktion zum Laden des Spielstandes aus localStorage
 function loadGameState() {
-	const savedIndex = localStorage.getItem("currentCardIndex");
-	const savedDeck = localStorage.getItem("fullDeck");
+	const savedIndex = localStorage.getItem("bp.currentCardIndex");
+	const savedDeck = localStorage.getItem("bp.fullDeck");
 
 	if (savedIndex !== null && savedDeck !== null) {
 		currentCardIndex = parseInt(savedIndex, 10);
@@ -137,8 +137,8 @@ function loadGameState() {
 // Funktion zum Löschen des Spielstands und Neustart des Spiels
 function resetGame() {
 	// Löschen des gespeicherten Spielstands
-	localStorage.removeItem("currentCardIndex");
-	localStorage.removeItem("fullDeck");
+	localStorage.removeItem("bp.currentCardIndex");
+	localStorage.removeItem("bp.fullDeck");
 
 	// Deck zurücksetzen und ein neues Spiel starten
 	fullDeck = []; // Leert das Deck
@@ -191,5 +191,6 @@ function preloadImages(deck) {
 
 
 startGame();
+
 
 
