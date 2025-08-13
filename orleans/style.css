@@ -1,0 +1,159 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body, html {
+	height: 100%;
+	width: 100%;
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f0f0f0;
+}
+
+.container {
+	width: 100vw; /* Setzt die Breite auf die gesamte Viewport-Breite */
+	height: 93vh; /* Setzt die Höhe auf 90% der Viewport-Höhe */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.caption-container {
+	width: 100%;
+	background-color: #604623;
+	color: white;
+	padding: 10px;
+	text-align: center;
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.image-container {
+	position: relative;
+	flex: 1; /* Nimmt den verbleibenden Platz ein */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%; /* Volle Breite nutzen */
+	height: 70vh; /* Setzt die Höhe auf 60% der Viewport-Höhe */
+}
+
+.image-container img {
+	max-width: 100%;
+	max-height: 100%;
+	object-fit: contain;
+}
+
+.text-container {
+	width: 100%;
+	padding: 10px;
+	text-align: center;
+}
+
+/* Schwierigkeitsslider im Restart-Container */
+.restart-container {
+	width: 100%;
+	text-align: center;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+/* Schwierigkeit-Container um Slider + Label */
+.difficulty-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 10px 20px;
+}
+
+/* Slider selbst */
+#difficulty {
+	-webkit-appearance: none;
+	width: 150px;
+	height: 8px;
+	background: #604623; /* passend zur Caption */
+	border-radius: 5px;
+	outline: none;
+	cursor: pointer;
+}
+
+/* Slider Thumb */
+#difficulty::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border: 2px solid #604623;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+#difficulty::-moz-range-thumb {
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border: 2px solid #604623;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+/* Label für den Wert */
+#difficultyValue {
+	font-weight: bold;
+	min-width: 25px;
+	text-align: center;
+	color: #604623;
+}
+
+
+.restart-container button {
+	padding: 10px 20px;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.nav-button {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: rgba(0, 0, 0, 0);
+	color: gray;
+	font-size: 2rem;
+	border: none;
+	cursor: pointer;
+	padding: 10px;
+	height:100%;
+	width:20%;
+}
+
+.nav-button.left {
+	left: 0px;
+	text-align:left;
+}
+
+.nav-button.right {
+	right: 0px;
+	text-align:right;
+}
+
+.reset-button {
+	font-size: 1.1em;
+	font-weight: bold;
+	color: #fff;
+	background-color: grey;
+	border: none;
+	border-radius: 8px; /* Abgerundete Ecken */
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Leichter Schatten */
+}
+
+

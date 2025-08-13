@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Orléans</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div class="container">
+		<div id="captionContainer" class="caption-container">
+			<p id="cardCaption"></p>
+		</div>
+
+		<div class="image-container">
+			<img id="cardImage" alt="Kartenbild">
+			<button id="prevButton" class="nav-button left">&#9664;</button>
+			<button id="nextButton" class="nav-button right">&#9654;</button>
+		</div>
+
+		<div class="restart-container">
+			<div id="difficultyContainer" class="difficulty-container" style="display:none;">
+				<input type="range" id="difficulty" min="1" max="7" step="1" value="1">
+				<span id="difficultyValue">1</span>
+			</div>
+			<button id="resetButton" class="reset-button">Neustart</button>
+		</div>
+
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>
