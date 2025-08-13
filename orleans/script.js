@@ -1,5 +1,5 @@
 // Rückseite
-const backCard = { image: "img/back.png", caption: "Game" }
+const backCard = { image: "img/back.png", caption: "Orléans" }
 
 // Kartennummern
 const allNumbers = [1, 2, 3, 4, 5, 6];
