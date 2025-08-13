@@ -168,7 +168,7 @@ function loadGameState() {
 // Spiel zurücksetzen
 function resetGame() {
 	localStorage.removeItem("orleans_currentCardIndex");
-	.removeItem("orleans_fullDeck");
+	localStorage.removeItem("orleans_fullDeck");
 
 	const difficulty = parseInt(localStorage.getItem("orleans_difficulty") || "1", 10);
 	buildFullDeck(difficulty);
@@ -233,5 +233,6 @@ function preloadImages(deck) {
 }
 
 startGame();
+
 
 
