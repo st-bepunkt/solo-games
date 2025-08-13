@@ -148,13 +148,13 @@ function displayCurrentCard() {
 
 // Spielstand speichern/laden
 function saveGameState() {
-	localStorage.setItem("currentCardIndex", currentCardIndex);
-	localStorage.setItem("fullDeck", JSON.stringify(fullDeck));
+	localStorage.setItem("orleans.currentCardIndex", currentCardIndex);
+	localStorage.setItem("orleans.fullDeck", JSON.stringify(fullDeck));
 }
 
 function loadGameState() {
-	const savedIndex = localStorage.getItem("currentCardIndex");
-	const savedDeck = localStorage.getItem("fullDeck");
+	const savedIndex = localStorage.getItem("orleans.currentCardIndex");
+	const savedDeck = localStorage.getItem("orleans.fullDeck");
 
 	if (savedIndex !== null && savedDeck !== null) {
 		currentCardIndex = parseInt(savedIndex, 10);
@@ -167,10 +167,10 @@ function loadGameState() {
 
 // Spiel zurücksetzen
 function resetGame() {
-	localStorage.removeItem("currentCardIndex");
-	localStorage.removeItem("fullDeck");
+	localStorage.removeItem("orleans.currentCardIndex");
+	.removeItem("orleans.fullDeck");
 
-	const difficulty = parseInt(localStorage.getItem("difficulty") || "1", 10);
+	const difficulty = parseInt(localStorage.getItem("orleans.difficulty") || "1", 10);
 	buildFullDeck(difficulty);
 	preloadImages(fullDeck);
 	currentCardIndex = 0;
@@ -201,7 +201,7 @@ const difficultySlider = document.getElementById("difficulty");
 const difficultyValue = document.getElementById("difficultyValue");
 
 // Wert aus localStorage laden
-const savedDifficulty = localStorage.getItem("difficulty");
+const savedDifficulty = localStorage.getItem("orleans.difficulty");
 if (savedDifficulty) {
 	difficultySlider.value = savedDifficulty;
 	difficultyValue.textContent = savedDifficulty;
@@ -210,7 +210,7 @@ if (savedDifficulty) {
 // Slider-Event
 difficultySlider.addEventListener("input", () => {
 	difficultyValue.textContent = difficultySlider.value;
-	localStorage.setItem("difficulty", difficultySlider.value);
+	localStorage.setItem("orleans.difficulty", difficultySlider.value);
 });
 
 // Spielstart
@@ -233,3 +233,4 @@ function preloadImages(deck) {
 }
 
 startGame();
+
