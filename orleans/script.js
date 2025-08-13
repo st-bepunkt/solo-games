@@ -148,13 +148,13 @@ function displayCurrentCard() {
 
 // Spielstand speichern/laden
 function saveGameState() {
-	localStorage.setItem("orleans.currentCardIndex", currentCardIndex);
-	localStorage.setItem("orleans.fullDeck", JSON.stringify(fullDeck));
+	localStorage.setItem("orleans_currentCardIndex", currentCardIndex);
+	localStorage.setItem("orleans_fullDeck", JSON.stringify(fullDeck));
 }
 
 function loadGameState() {
-	const savedIndex = localStorage.getItem("orleans.currentCardIndex");
-	const savedDeck = localStorage.getItem("orleans.fullDeck");
+	const savedIndex = localStorage.getItem("orleans_currentCardIndex");
+	const savedDeck = localStorage.getItem("orleans_fullDeck");
 
 	if (savedIndex !== null && savedDeck !== null) {
 		currentCardIndex = parseInt(savedIndex, 10);
@@ -167,10 +167,10 @@ function loadGameState() {
 
 // Spiel zurücksetzen
 function resetGame() {
-	localStorage.removeItem("orleans.currentCardIndex");
-	.removeItem("orleans.fullDeck");
+	localStorage.removeItem("orleans_currentCardIndex");
+	.removeItem("orleans_fullDeck");
 
-	const difficulty = parseInt(localStorage.getItem("orleans.difficulty") || "1", 10);
+	const difficulty = parseInt(localStorage.getItem("orleans_difficulty") || "1", 10);
 	buildFullDeck(difficulty);
 	preloadImages(fullDeck);
 	currentCardIndex = 0;
@@ -201,7 +201,7 @@ const difficultySlider = document.getElementById("difficulty");
 const difficultyValue = document.getElementById("difficultyValue");
 
 // Wert aus localStorage laden
-const savedDifficulty = localStorage.getItem("orleans.difficulty");
+const savedDifficulty = localStorage.getItem("orleans_difficulty");
 if (savedDifficulty) {
 	difficultySlider.value = savedDifficulty;
 	difficultyValue.textContent = savedDifficulty;
@@ -210,7 +210,7 @@ if (savedDifficulty) {
 // Slider-Event
 difficultySlider.addEventListener("input", () => {
 	difficultyValue.textContent = difficultySlider.value;
-	localStorage.setItem("orleans.difficulty", difficultySlider.value);
+	localStorage.setItem("orleans_difficulty", difficultySlider.value);
 });
 
 // Spielstart
@@ -233,4 +233,5 @@ function preloadImages(deck) {
 }
 
 startGame();
+
 
