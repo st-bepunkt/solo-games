@@ -1,6 +1,6 @@
 const STORAGE_KEY = "simpleDeckState";
 
-// 7 Karten + Back-Card
+// 7 Karten
 const cards = [
 	{ image: "img/SO_01.png", caption: "Karte 1" },
 	{ image: "img/SO_02.png", caption: "Karte 2" },
@@ -11,10 +11,12 @@ const cards = [
 	{ image: "img/SO_07.png", caption: "Karte 7" }
 ];
 
-const backCard = { image: "img/help.png", caption: "Rückseite" };
+const backCard = { image: "img/title.png", caption: "Suna Valo" };
+const helpCard = { image: "img/help.png", caption: "Hilfe"};
 
 let deck = [];
 let index = 0;
+let helpMode = false;
 
 // Fisher-Yates
 function shuffle(a) {
@@ -53,12 +55,19 @@ function reset() {
 }
 
 function show() {
-	const c = deck[index];
+	const c = helpMode ? helpCard : deck[index];
 	cardImage.src = c.image;
-	cardCaption.textContent = c.caption;
+
+	let caption = `Karte ${index + 1}`;
+	if (index === deck.length - 1 || helpMode) {
+		caption = c.caption;
+	}
+	cardCaption.textContent = caption;
 
 	prevButton.style.display = index === 0 ? "none" : "block";
 	nextButton.style.display = index === deck.length - 1 ? "none" : "block";
+	helpButton.textContent = helpMode ? "Zurück" : "Hilfe";
+
 }
 
 function start() {
@@ -66,6 +75,7 @@ function start() {
 	deck.push(backCard);
 	preload(deck);
 	index = 0;
+	helpMode = false;
 	save();
 	show();
 }
@@ -88,6 +98,10 @@ prevButton.onclick = () => {
 };
 
 resetButton.onclick = reset;
+helpButton.onclick = () => {
+	helpMode = !helpMode;
+	show();
+};
 
 // Init
 if (!load()) start();
