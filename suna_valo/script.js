@@ -68,17 +68,21 @@ function show() {
 	cardCaption.textContent = card.caption;
 
 	const showNextButton = 
-		card.id === "title" ||
-		(card.turn === 7 && index === storagePile.length - 1 );
-		
+		card.id === "help" ||
+		card.turn < 7 ||
+		index < storagePile.length - 1;
+	nextButton.style.display = showNextButton ? "block" : "none";
 	prevButton.style.display = index === 0 ? "none" : "block";
-	nextButton.style.display = showNextButton ? "none" : "block";
 
-	newEraButton.style.display = card.turn > 5 && card.era === era ? "inline-block" : "none";
+	const showNewEraButton = 
+		card.turn > 5 &&
+		card.era === era &&
+		!Number.isNaN(Number(card.id));
+	newEraButton.style.display = showNewEraButton ? "inline-block" : "none";
 	newEraButton.textContent = card.era === 3 ? "Spielende" : "Neue Ära";
 	
-	console.log("storagePile:",storagePile)
-	console.log("drawPile:",drawPile)
+	// console.log("storagePile:",storagePile)
+	// console.log("drawPile:",drawPile)
 	
 }
 
