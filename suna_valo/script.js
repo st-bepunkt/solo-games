@@ -10,8 +10,8 @@ const soloCards = [
 	{ id: 7, image: "img/SO_07.png", shuffleIcon: false}
 ];
 
-const helpCard = { id: "help", image: "img/help.png", shuffleIcon: false, caption: "Einkommensphase"};
-const titleCard = { id: "title", image: "img/title.png", shuffleIcon: false, caption: "Suna Valo" };
+const helpCard = { id: "help", image: "img/help.png", shuffleIcon: false, info: "Einkommensphase"};
+const titleCard = { id: "title", image: "img/title.png", shuffleIcon: false, caption: "Suna Valo", info: "Punktewertung" };
 
 let storagePile = [];
 let drawPile = [];
@@ -19,6 +19,7 @@ let index = 0;
 
 let era = 1;
 let turn = 1;
+let lastTurn = false;
 
 let reshuffle  = false;
 
@@ -46,6 +47,7 @@ function drawNextCard() {
 	card.era = era;
 	card.turn = turn;
 	card.caption = `Ära ${era} – Zug ${turn}`;
+	card.info = `Nachziehstapel: ${drawPile.length} Karten`;
 	storagePile.push(card);
 	index = storagePile.length - 1;
 
@@ -66,6 +68,7 @@ function show() {
 	const card = storagePile[index];
 	cardImage.src = card.image;
 	cardCaption.textContent = card.caption;
+	infoText.textContent = card.info;
 
 	const showNextButton = 
 		card.id === "help" ||
@@ -79,7 +82,11 @@ function show() {
 		card.era === era &&
 		!Number.isNaN(Number(card.id));
 	newEraButton.style.display = showNewEraButton ? "inline-block" : "none";
-	newEraButton.textContent = card.era === 3 ? "Spielende" : "Neue Ära";
+	if (card.era === 3) {
+		newEraButton.textContent = lastTurn ? "Spielende" : "letzte Runde";
+	} else {
+		newEraButton.textContent = "Neue Ära";
+	}
 	
 	// console.log("storagePile:",storagePile)
 	// console.log("drawPile:",drawPile)
@@ -129,9 +136,18 @@ newEraButton.onclick = () => {
 		drawPile.unshift(card);
 		turn--;
 	}
+	
+	if (era === 3 && !lastTurn) {
+		lastTurn = true;
+		drawNextCard();
+		show();
+		return;
+	}
+	
 	const card = { ...helpCard }; 
 	card.era = era;
 	card.turn = turn;
+	card.caption = ` Ende Ära ${era}`;
 	storagePile.push(card);
 	index = storagePile.length - 1;
 	saveState();
@@ -147,6 +163,7 @@ function saveState() {
 		index,
 		era,
 		turn,
+		lastTurn,
 		reshuffle
 	}));
 }
@@ -161,6 +178,7 @@ function loadState() {
 	index = s.index;
 	era = s.era;
 	turn = s.turn;
+	lastTurn = s.lastTurn;
 	reshuffle = s.reshuffle;
 	return true;
 }
@@ -177,6 +195,7 @@ function startGame() {
 	index = 0;
 	era = 1;
 	turn = 1;
+	lastTurn = false;
 	reshuffle = false;
 
 	fillDrawPile();
