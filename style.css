@@ -1,14 +1,18 @@
-/* Reset */
+/* =========================
+   Reset
+   ========================= */
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-/* Background */
+/* =========================
+   Background
+   ========================= */
 body {
 	min-height: 100vh;
-	background-image: url("img/bot_i.png"); /* dein Bild */
+	background-image: url("img/bot_i.png");
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
@@ -16,7 +20,10 @@ body {
 	color: #e6e1d8;
 }
 
-/* leichte Abdunklung für Lesbarkeit */
+
+/* =========================
+   Overlay / Layout
+   ========================= */
 .overlay {
 	min-height: 100vh;
 	background: radial-gradient(
@@ -26,13 +33,14 @@ body {
 	);
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: flex-start;
 	justify-content: flex-start;
-	padding: 6rem 2rem 4rem;
+	padding: 6rem 2rem 4rem 4rem;
 }
 
-
-/* Headline */
+/* =========================
+   Headline
+   ========================= */
 h1 {
 	font-family: "Cinzel", serif;
 	font-size: clamp(3rem, 6vw, 5rem);
@@ -44,31 +52,35 @@ h1 {
 		0 0 20px rgba(80, 160, 200, 0.15);
 }
 
-/* Button Layout */
+/* =========================
+   Button Container
+   ========================= */
 .button-grid {
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
 	width: 100%;
-	max-width: 520px;
+	max-width: 480px;
+	align-self: flex-start;
 }
 
-/* Buttons */
+/* =========================
+   Navigation Buttons
+   ========================= */
 .nav-button {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
-	gap: 1rem;
+	gap: 1.2rem;
 	padding: 1.2rem 1.5rem;
 	text-decoration: none;
 	color: #e6e1d8;
 
-	background:
-		linear-gradient(
-			135deg,
-			rgba(120, 90, 50, 0.45),
-			rgba(60, 80, 100, 0.35)
-		);
+	background: linear-gradient(
+		135deg,
+		rgba(120, 90, 50, 0.45),
+		rgba(60, 80, 100, 0.35)
+	);
 
 	border: 1px solid rgba(200, 170, 120, 0.35);
 	border-radius: 6px;
@@ -81,7 +93,9 @@ h1 {
 	transition: all 0.25s ease;
 }
 
-/* Icons */
+/* =========================
+   Button Icons
+   ========================= */
 .nav-button img {
 	width: 42px;
 	height: 42px;
@@ -91,13 +105,17 @@ h1 {
 		drop-shadow(0 0 4px rgba(100, 180, 220, 0.35));
 }
 
-/* Button Text */
+/* =========================
+   Button Text
+   ========================= */
 .nav-button span {
 	font-size: 1.1rem;
 	letter-spacing: 0.08em;
 }
 
-/* Hover */
+/* =========================
+   Hover / Active States
+   ========================= */
 .nav-button:hover {
 	transform: translateY(-4px);
 	border-color: rgba(120, 200, 230, 0.6);
@@ -106,7 +124,46 @@ h1 {
 		0 14px 30px rgba(0, 0, 0, 0.6);
 }
 
-/* Active */
 .nav-button:active {
 	transform: translateY(-1px);
+}
+
+/* =========================
+   Mobile Optimierung
+   ========================= */
+@media (max-width: 768px) {
+
+	.overlay {
+		padding: 4rem 1.5rem;
+	}
+
+	h1 {
+		font-size: 3rem;
+		margin-bottom: 2.5rem;
+	}
+
+	.button-grid {
+		width: 100%;
+		max-width: none;
+	}
+
+	.nav-button {
+		padding: 1.4rem 1.6rem;
+	}
+
+	.nav-button img {
+		width: 52px;
+		height: 52px;
+	}
+
+	.nav-button span {
+		font-size: 1.15rem;
+	}
+}
+
+@media (min-width: 1200px) {
+    body {
+        background-image: url("img/bot_iv.png");
+        background-position: center right;
+    }
 }
